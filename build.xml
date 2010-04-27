@@ -1,11 +1,24 @@
 <project name="ZF Training Build" default="build">
-  <target name="build" depends="phpunit">
+  <target name="build" depends="phpcs, phpunit">
+  </target>
+
+  <target name="phpcs">
+    <echo msg="Check coding standard" /> 
+	<phpcodesniffer standard="Zend" showWarnings="true"
+      verbosity="1">
+      <fileset dir="./">
+        <include name="library/**/*.php" />
+        <include name="application/**/*.php" />
+ 	  </fileset>
+      <formatter type="checkstyle" outfile="build/report/checkstyle.xml" />
+    </phpcodesniffer>
   </target>
 
   <target name="phpunit">
+    <echo msg="Unit Testing" /> 
     <phpunit bootstrap="tests/TestHelper.php" printsummary="true" 
-      haltonfailure="true" haltonerror="true" haltonskipped="true">
-      <formatter todir="tests/log" type="xml"/>
+      haltonfailure="true">
+      <formatter todir="build/report" type="xml"/>
       <batchtest>
         <fileset dir="./tests">
           <include name="**/*Test.php"/>
