@@ -1,0 +1,16 @@
+<project name="ZF Training Build" default="build">
+  <target name="build" depends="phpunit">
+  </target>
+
+  <target name="phpunit">
+    <phpunit bootstrap="tests/TestHelper.php" printsummary="true" 
+      haltonfailure="true" haltonerror="true" haltonskipped="true">
+      <formatter todir="tests/log" type="xml"/>
+      <batchtest>
+        <fileset dir="./tests">
+          <include name="**/*Test.php"/>
+        </fileset>
+      </batchtest>
+    </phpunit>
+  </target>
+</project>

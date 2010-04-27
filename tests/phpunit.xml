@@ -1,0 +1,22 @@
+<phpunit colors="true" bootstrap="./TestHelper.php">
+  <testsuite name="Test Suite For ZF Training">
+    <directory>./</directory>
+  </testsuite>
+  
+  <filter>
+    <whitelist>
+      <directory suffix=".php">../application/</directory>
+      <directory suffix=".php">../library/</directory>
+      <exclude>
+        <directory suffix=".phtml">../application/</directory>
+      </exclude>
+    </whitelist>
+  </filter>
+   
+  <logging>
+    <log highlowerbound="80" lowupperbound="50" highlight="true"
+     i="true" charset="UTF-8" target="./log/report" type="coverage-html">
+      <log target="./log/testdox.html" type="testdox-html"></log>
+    </log>
+  </logging>
+</phpunit>
